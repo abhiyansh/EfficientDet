@@ -13,9 +13,9 @@ from utils.draw_boxes import draw_boxes
 def main():
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-    phi = 1
+    phi = 0
     weighted_bifpn = True
-    model_path = 'efficientdet-d1.h5'
+    model_path = 'models/efficientdet-d0.h5'
     image_sizes = (512, 640, 768, 896, 1024, 1280, 1408)
     image_size = image_sizes[phi]
     # coco classes
@@ -29,7 +29,7 @@ def main():
                             score_threshold=score_threshold)
     model.load_weights(model_path, by_name=True)
 
-    for image_path in glob.glob('datasets/VOC2007/JPEGImages/*.jpg'):
+    for image_path in glob.glob('datasets/1/*.jpg'):
         image = cv2.imread(image_path)
         src_image = image.copy()
         # BGR -> RGB
